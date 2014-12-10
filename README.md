@@ -11,7 +11,7 @@
 ## Example
 
   ```
-  var koala = require('koala');
+  var koala = require('koala-logger');
   var tracker = koala('example');
 
   tracker

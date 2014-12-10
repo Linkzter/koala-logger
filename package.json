@@ -1,5 +1,5 @@
 {
-  "name": "koala",
+  "name": "koala-logger",
   "version": "1.0.0",
   "description": "Logger and Analyser",
   "main": "index.js",
