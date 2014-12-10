@@ -12,7 +12,7 @@
 
   ```
   var koala = require('koala-logger');
-  var tracker = koala('example');
+  var tracker = koala.logger('example');
 
   tracker
     .add('application-error', {
