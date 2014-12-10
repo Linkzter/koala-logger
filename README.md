@@ -32,6 +32,10 @@
     });
   ```
 
+## API
+
+(Visit)[https://github.com/Linkzter/koala/blob/master/API.md]
+
 ## License
 
   ISC
