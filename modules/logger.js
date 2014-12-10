@@ -66,6 +66,8 @@ function list(callback) {
   }
 
   function outValueMapHandler(item) {
+    var content = {};
+    content[item.key] = item.value;
     return item.value;
   }
 

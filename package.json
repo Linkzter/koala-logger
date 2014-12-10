@@ -19,9 +19,12 @@
     "gulp-rename": "^1.2.0",
     "gulp-util": "^3.0.1",
     "remove": "^0.1.5",
-    "should": "^4.3.1"
+    "should": "^4.3.1",
+    "superagent": "^0.21.0"
   },
   "dependencies": {
+    "body-parser": "^1.10.0",
+    "express": "^4.10.4",
     "level": "^0.18.0"
   }
 }

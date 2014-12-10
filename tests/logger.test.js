@@ -30,7 +30,6 @@ describe('logger', function () {
   it('should be list logs', function (done) {
     actual.list(function (err, result) {
       should.not.exist(err);
-      console.log(result);
       result.should.have.lengthOf(1);
       done();
     });
