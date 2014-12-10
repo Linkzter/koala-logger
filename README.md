@@ -34,7 +34,7 @@
 
 ## API
 
-(Visit)[https://github.com/Linkzter/koala/blob/master/API.md]
+[Visit](https://github.com/Linkzter/koala/blob/master/API.md)
 
 ## License
 
