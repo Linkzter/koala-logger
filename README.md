@@ -6,7 +6,7 @@
 
 ## Installation
 
-  `[sudo] npm i --save koala`
+  `[sudo] npm i --save koala-logger`
 
 ## Example
 
