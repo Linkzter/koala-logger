@@ -32,6 +32,26 @@
     });
   ```
 
+### Express module
+  
+  ```
+  var koala = require('koala-tracker');
+  var logger = koala.logger('example');
+  var server = koala.server(logger);
+  ```
+
+  running on express app
+
+  ```
+  app.use(server);
+  ```
+
+  or just run the server
+
+  ```
+  server.listen(4000);
+  ```
+
 ## API
 
 [Visit](https://github.com/Linkzter/koala/blob/master/API.md)
