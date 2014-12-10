@@ -5,7 +5,7 @@ var path = require('path');
 /**
  * Logger based on register track of an application 
  * @contructor
- * @param {string} applicationName - Name of the application
+ * @param applicationName {string} - Name of the application
  */
 function Logger(applicationName) {
   // values
@@ -20,8 +20,8 @@ function Logger(applicationName) {
 /**
  * Add new log entry
  * @method add
- * @param {string} key - Set key of log
- * @param {object} value - Set content to the application
+ * @param key {string} - Set key of log
+ * @param value {object} - Set content to the application
  * @callback Logger~callback 
  */
 function add(key, value, callback) {
