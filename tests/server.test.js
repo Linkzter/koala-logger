@@ -25,7 +25,7 @@ describe('server', function () {
   });
 
   after(function (done) {
-    remove.removeSync(logger.dbName);
+    logger.db.end();
     done();
   });
 });

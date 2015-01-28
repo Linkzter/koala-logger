@@ -25,6 +25,7 @@ function Logger(applicationName) {
  */
 function add(key, value, callback) {
   key = this.applicationName + '-' + key + '-' + Date.now();
+  callback = callback || function () {};
   var input = {};
 
   input[key] = JSON.stringify(value);
