@@ -1,6 +1,5 @@
 // file: modules/logger.js - created at 2014-12-09, 08:52
-var level = require('level');
-var path = require('path');
+var redis = require('redis');
 
 /**
  * Logger based on register track of an application 
@@ -11,7 +10,7 @@ function Logger(applicationName) {
   // values
   this.applicationName = applicationName;
   this.dbName = this.applicationName + '-logs'; 
-  this.db = level(path.resolve(process.cwd(), this.dbName));
+  this.db = redis.createClient();
   // methods
   this.add = add;
   this.list = list;
@@ -26,13 +25,15 @@ function Logger(applicationName) {
  */
 function add(key, value, callback) {
   key = this.applicationName + '-' + key + '-' + Date.now();
+  var input = {};
+
+  input[key] = JSON.stringify(value);
 
   this
     .db
-    .put(
-      key,
-      { value: value, created_at: Date.now() },
-      { valueEncoding: 'json' },
+    .hmset(
+      this.dbName,
+      input,
       callback
     );
 
@@ -47,44 +48,21 @@ function add(key, value, callback) {
 function list(callback) {
   var out = [];
 
-  function dataHandler(data) {
-    if (data.key.indexOf(this.applicationName)) {
-      out.push(data.value);
+  function listHandler(err, obj) {
+    if (err) {
+      callback(err, null);
+    } else {
+      for (var key in obj) {
+        var item = JSON.parse(obj[key]);
+        out.push(item); 
+      }
+      callback(err, out);
     }
-  }
-
-  function errorHandler(err) {
-    callback(err, null);
-  }
-
-  function outParseMapHandler(item) {
-    return JSON.parse(item);
-  }
-
-  function outSortHandler(a, b) {
-    return a.created_at < b.created_at;
-  }
-
-  function outValueMapHandler(item) {
-    var content = {};
-    content[item.key] = item.value;
-    return item.value;
-  }
-
-  function endHandler() {
-    out = out.map(outParseMapHandler);
-    out = out.sort(outSortHandler);
-    out = out.map(outValueMapHandler);
-
-    callback(null, out);
   }
 
   this
     .db
-    .createReadStream({ keys: true, values: true })
-    .on('data', dataHandler)
-    .on('error', errorHandler)
-    .on('end', endHandler);
+    .hgetall(this.dbName, listHandler);
 }
 
 function loggerHandler(applicationName) {

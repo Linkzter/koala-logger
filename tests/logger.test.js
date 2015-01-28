@@ -36,7 +36,7 @@ describe('logger', function () {
   });
 
   after(function (done) {
-    remove.removeSync(actual.dbName);
+    actual.db.end();
     done();
   });
 });
